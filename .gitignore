@@ -216,3 +216,34 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# =============================================================================
+# Calibrated Agency — project-specific ignores
+# =============================================================================
+
+# Raw and prepared datasets (large binary / JSONL files)
+/data/
+
+# Experiment results (large JSONL trajectory files) — but keep generated
+# figures/tables and curated qualitative examples tracked in git
+results/*
+!results/figures/
+!results/examples/
+
+# MLflow tracking store
+mlruns/
+
+# External benchmark repos (cloned during setup)
+AgentBench/
+ToolBench/
+
+# HuggingFace model/dataset cache
+.cache/
+~/.cache/huggingface/
+
+# Claude Code local settings (per-user permissions, not for the repo)
+.claude/settings.local.json
+.claude/
+
+# SLURM job logs
+logs/
