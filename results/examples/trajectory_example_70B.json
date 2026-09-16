@@ -1,0 +1,332 @@
+{
+  "task_id": "153",
+  "env_type": "db",
+  "instruction": "what is the average number of laps driven in the indianapolis 500 in tony gulotta's career?",
+  "gold_answer": [
+    "153"
+  ],
+  "task_success": false,
+  "n_steps": 16,
+  "trajectory": [
+    {
+      "step_id": 0,
+      "thought": "Action: list_tables()",
+      "action_name": "list_tables",
+      "action_cmd": "",
+      "observation": "OK: Race Results",
+      "seq_logprob": -0.03144068767517183,
+      "consistency_scores": [
+        0.9233058829842133,
+        0.9233058829842133,
+        0.9233058829842133,
+        0.9233058829842133,
+        0.9233058829842133
+      ],
+      "c_star_cocoa": 0.9997453268178185,
+      "branch_consistency_raw": 2.488135576248169,
+      "branch_consistency": 0.9233058829842133,
+      "escalated": false,
+      "is_correct": true
+    },
+    {
+      "step_id": 1,
+      "thought": "Action: describe_table(\"Race Results\")",
+      "action_name": "describe_table",
+      "action_cmd": "Race Results",
+      "observation": "OK: Column schema:\n  Year: TEXT\n  Car: TEXT\n  Start: TEXT\n  Qual: TEXT\n  Rank: TEXT\n  Finish: TEXT\n  Laps: TEXT\n  Led: TEXT\n  Retired: TEXT\n\nSample rows (use these EXACT value formats in WHERE clauses):\n  Year='1926', Car='31', Start='12', Qual='102.789', Rank='13', Finish='11', Laps='142', Led='0', Retired='Flagged'\n  Year='1927', Car='27', Start='27', Qual='107.765', Rank='22', Finish='3', Laps='200', Led='0', Retired='Running'\n  Year='1928', Car='8', Start='4', Qual='117.031', Rank='4', Finish='10', Laps='200', Led='33', Retired='Running'",
+      "seq_logprob": -0.02751555077793455,
+      "consistency_scores": [
+        0.9079706263418843,
+        0.9079706263418843,
+        0.9079706263418843,
+        0.9079706263418843,
+        0.9079706263418843
+      ],
+      "c_star_cocoa": 0.999732520108814,
+      "branch_consistency_raw": 2.2891042232513428,
+      "branch_consistency": 0.9079706263418843,
+      "escalated": false,
+      "is_correct": true
+    },
+    {
+      "step_id": 2,
+      "thought": "Action: sql_query(\"SELECT AVG(`Laps`) FROM `Race Results` WHERE `Driver` = 'Tony Gulotta'\")",
+      "action_name": "sql_query",
+      "action_cmd": "SELECT AVG(`Laps`) FROM `Race Results` WHERE `Driver` = 'Tony Gulotta'",
+      "observation": "ERROR: Column not found (no such column: Driver). Actual columns \u2014 'Race Results': Year, Car, Start, Qual, Rank, Finish, Laps, Led, Retired. Use describe_table() to verify exact names.",
+      "seq_logprob": -1.7959918220456075,
+      "consistency_scores": [
+        0.907717800328738,
+        0.20733130254776427,
+        0.907717800328738,
+        0.11979611054507318,
+        0.24425269796476187
+      ],
+      "c_star_cocoa": 0.9005901325688357,
+      "branch_consistency_raw": -1.1417986273765564,
+      "branch_consistency": 0.2419902839147497,
+      "escalated": true,
+      "is_correct": false
+    },
+    {
+      "step_id": 3,
+      "thought": "Thought: The column \"Driver\" does not exist in the \"Race Results\" table. I need to find the correct table that contains the driver information.",
+      "action_name": "none",
+      "action_cmd": "",
+      "observation": "No valid action parsed",
+      "seq_logprob": -10.25696195905396,
+      "consistency_scores": [
+        0.8777039551676985,
+        0.7286467516003188,
+        0.5846069356101554,
+        0.16697889335069765,
+        0.2796639604339312
+      ],
+      "c_star_cocoa": 0.4867491594305341,
+      "branch_consistency_raw": 1.0310450077056885,
+      "branch_consistency": 0.7371184422096049,
+      "escalated": false,
+      "is_correct": false
+    },
+    {
+      "step_id": 4,
+      "thought": "Action: list_tables()",
+      "action_name": "list_tables",
+      "action_cmd": "",
+      "observation": "OK: Race Results",
+      "seq_logprob": -0.027821730470350303,
+      "consistency_scores": [
+        0.9233058829842133,
+        0.9233058829842133,
+        0.9233058829842133,
+        0.9233058829842133,
+        0.9233058829842133
+      ],
+      "c_star_cocoa": 0.9997747218324778,
+      "branch_consistency_raw": 2.488135576248169,
+      "branch_consistency": 0.9233058829842133,
+      "escalated": false,
+      "is_correct": false
+    },
+    {
+      "step_id": 5,
+      "thought": "Thought: I already know the columns in the \"Race Results\" table, but I still need to find a way to filter by driver. I'll look for another table that might contain driver information.",
+      "action_name": "none",
+      "action_cmd": "",
+      "observation": "No valid action parsed",
+      "seq_logprob": -13.166623621877307,
+      "consistency_scores": [
+        0.8195473456216262,
+        0.1353299754705897,
+        0.13634890358442478,
+        0.09629080515667647,
+        0.16051815240878348
+      ],
+      "c_star_cocoa": 0.0,
+      "branch_consistency_raw": -1.3636406511068344,
+      "branch_consistency": 0.20364923817555589,
+      "escalated": true,
+      "is_correct": false
+    },
+    {
+      "step_id": 6,
+      "thought": "Action: list_tables()",
+      "action_name": "list_tables",
+      "action_cmd": "",
+      "observation": "OK: Race Results",
+      "seq_logprob": -0.1785444755446406,
+      "consistency_scores": [
+        0.9233058829842133,
+        0.9233058829842133,
+        0.9233058829842133,
+        0.9233058829842133,
+        0.9233058829842133
+      ],
+      "c_star_cocoa": 0.9985504748877913,
+      "branch_consistency_raw": 2.488135576248169,
+      "branch_consistency": 0.9233058829842133,
+      "escalated": false,
+      "is_correct": false
+    },
+    {
+      "step_id": 7,
+      "thought": "Thought: I still only have one table, \"Race Results\". I need to try and find a way to filter by driver using the columns I have available.",
+      "action_name": "none",
+      "action_cmd": "",
+      "observation": "No valid action parsed",
+      "seq_logprob": -12.849017709835039,
+      "consistency_scores": [
+        0.7398527891669752,
+        0.07331418537481671,
+        0.5671597126713299,
+        0.662037669799557,
+        0.6951020249992991
+      ],
+      "c_star_cocoa": 0.3842241539982836,
+      "branch_consistency_raw": -0.40057394504547117,
+      "branch_consistency": 0.40117445123688517,
+      "escalated": true,
+      "is_correct": false
+    },
+    {
+      "step_id": 8,
+      "thought": "Action: describe_table(\"Race Results\")",
+      "action_name": "describe_table",
+      "action_cmd": "Race Results",
+      "observation": "OK: Column schema:\n  Year: TEXT\n  Car: TEXT\n  Start: TEXT\n  Qual: TEXT\n  Rank: TEXT\n  Finish: TEXT\n  Laps: TEXT\n  Led: TEXT\n  Retired: TEXT\n\nSample rows (use these EXACT value formats in WHERE clauses):\n  Year='1926', Car='31', Start='12', Qual='102.789', Rank='13', Finish='11', Laps='142', Led='0', Retired='Flagged'\n  Year='1927', Car='27', Start='27', Qual='107.765', Rank='22', Finish='3', Laps='200', Led='0', Retired='Running'\n  Year='1928', Car='8', Start='4', Qual='117.031', Rank='4', Finish='10', Laps='200', Led='33', Retired='Running'",
+      "seq_logprob": -0.21943177433786332,
+      "consistency_scores": [
+        0.9079706263418843,
+        0.9079706263418843,
+        0.9079706263418843,
+        0.9079706263418843,
+        0.9079706263418843
+      ],
+      "c_star_cocoa": 0.9978619829615214,
+      "branch_consistency_raw": 2.2891042232513428,
+      "branch_consistency": 0.9079706263418843,
+      "escalated": false,
+      "is_correct": false
+    },
+    {
+      "step_id": 9,
+      "thought": "Thought: I still can't find a way to filter by driver. I'll try to find a different approach to solve the problem.",
+      "action_name": "none",
+      "action_cmd": "",
+      "observation": "No valid action parsed",
+      "seq_logprob": -9.92799516726108,
+      "consistency_scores": [
+        0.6704461700949628,
+        0.09061706432870795,
+        0.07352653185498549,
+        0.40389614359189796,
+        0.2598767659521989
+      ],
+      "c_star_cocoa": 0.26363950303596173,
+      "branch_consistency_raw": -1.4305490612983705,
+      "branch_consistency": 0.19301314853905976,
+      "escalated": true,
+      "is_correct": false
+    },
+    {
+      "step_id": 10,
+      "thought": "Action: sql_query(\"SELECT AVG(`Laps`) FROM `Race Results` WHERE `Car` = 'Tony Gulotta'\")",
+      "action_name": "sql_query",
+      "action_cmd": "SELECT AVG(`Laps`) FROM `Race Results` WHERE `Car` = 'Tony Gulotta'",
+      "observation": "OK: Query returned results:\n  {'AVG(`Laps`)': None}",
+      "seq_logprob": -1.7742724470912208,
+      "consistency_scores": [
+        0.4214992657550418,
+        0.4214992657550418,
+        0.7824522674659106,
+        0.8969285671718799,
+        0.8969285671718799
+      ],
+      "c_star_cocoa": 0.9405953266699304,
+      "branch_consistency_raw": 0.3993687152862549,
+      "branch_consistency": 0.5985359777315757,
+      "escalated": true,
+      "is_correct": false
+    },
+    {
+      "step_id": 11,
+      "thought": "Thought: The query returned no results, which means there is no car with the name 'Tony Gulotta'. I should try a different approach, possibly using a different column or a different table.",
+      "action_name": "none",
+      "action_cmd": "",
+      "observation": "No valid action parsed",
+      "seq_logprob": -11.766157060815537,
+      "consistency_scores": [
+        0.20599350882540354,
+        0.7554041213877449,
+        0.396726258113672,
+        0.30091021052926115,
+        0.3450191283343101
+      ],
+      "c_star_cocoa": 0.253333782218063,
+      "branch_consistency_raw": -0.4600538194179535,
+      "branch_consistency": 0.3869730564764208,
+      "escalated": true,
+      "is_correct": false
+    },
+    {
+      "step_id": 12,
+      "thought": "Action: sql_query(\"SELECT AVG(`Laps`) FROM `Race Results` WHERE `Car` LIKE '%Tony Gulotta%'\")",
+      "action_name": "sql_query",
+      "action_cmd": "SELECT AVG(`Laps`) FROM `Race Results` WHERE `Car` LIKE '%Tony Gulotta%'",
+      "observation": "OK: Query returned results:\n  {'AVG(`Laps`)': None}",
+      "seq_logprob": -2.0432363066641983,
+      "consistency_scores": [
+        0.8644688602656572,
+        0.15189106100359936,
+        0.8644688602656572,
+        0.8644688602656572,
+        0.12971395048854273
+      ],
+      "c_star_cocoa": 0.9080334245903541,
+      "branch_consistency_raw": 1.8529138565063477,
+      "branch_consistency": 0.8644688602656572,
+      "escalated": false,
+      "is_correct": false
+    },
+    {
+      "step_id": 13,
+      "thought": "Thought: I've tried two queries and still got no results. I should try one more time before giving up.",
+      "action_name": "none",
+      "action_cmd": "",
+      "observation": "No valid action parsed",
+      "seq_logprob": -6.278546990199175,
+      "consistency_scores": [
+        0.9775044401622957,
+        0.16372853414427535,
+        0.39149321928449715,
+        0.1692564638899975,
+        0.061620558266186495
+      ],
+      "c_star_cocoa": 0.5695939404302872,
+      "branch_consistency_raw": -2.4265023946762083,
+      "branch_consistency": 0.08117395335982076,
+      "escalated": true,
+      "is_correct": false
+    },
+    {
+      "step_id": 14,
+      "thought": "Action: sql_query(\"SELECT AVG(`Laps`) FROM `Race Results` WHERE `Car` LIKE '%Gulotta%'\")",
+      "action_name": "sql_query",
+      "action_cmd": "SELECT AVG(`Laps`) FROM `Race Results` WHERE `Car` LIKE '%Gulotta%'",
+      "observation": "OK: Query returned results:\n  {'AVG(`Laps`)': None}",
+      "seq_logprob": -1.5455709233518178,
+      "consistency_scores": [
+        0.4560179169146863,
+        0.3742323627237105,
+        0.4318493202307597,
+        0.8518350783041055,
+        0.8518350783041055
+      ],
+      "c_star_cocoa": 0.9334048454061293,
+      "branch_consistency_raw": 1.2542067527770997,
+      "branch_consistency": 0.7780272206573583,
+      "escalated": false,
+      "is_correct": false
+    },
+    {
+      "step_id": 15,
+      "thought": "FINAL ANSWER: None",
+      "action_name": "none",
+      "action_cmd": "",
+      "observation": "[Task ended: FINAL ANSWER given]",
+      "seq_logprob": -0.0018522083830632141,
+      "consistency_scores": [
+        0.9601924483415366,
+        0.9601924483415366,
+        0.9601924483415366,
+        0.9601924483415366,
+        0.9601924483415366
+      ],
+      "c_star_cocoa": 0.9999928953199498,
+      "branch_consistency_raw": 3.183077096939087,
+      "branch_consistency": 0.9601924483415366,
+      "escalated": false,
+      "is_correct": false
+    }
+  ]
+}

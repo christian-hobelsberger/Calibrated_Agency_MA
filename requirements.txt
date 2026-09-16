@@ -1,0 +1,74 @@
+# =============================================================================
+# Calibrated Agency — Requirements
+# Target: LRZ AI Systems (Linux, CUDA 12.6, Python 3.11)
+#
+# IMPORTANT — PyTorch must be installed FIRST with the CUDA 12.6 wheel:
+#   pip install torch==2.4.0 torchvision torchaudio \
+#       --index-url https://download.pytorch.org/whl/cu126
+#
+# Then install the rest:
+#   pip install -r requirements.txt
+#
+# On LRZ, use scripts/lrz/setup_env.sh which handles this automatically.
+#
+# torch / torchvision / torchaudio are intentionally NOT listed here so that
+# pip cannot silently downgrade the CUDA-built wheel to a CPU build from PyPI.
+# =============================================================================
+
+# --- Core deep learning (torch handled separately, see note above) ---
+transformers==4.46.0
+accelerate==1.0.1
+bitsandbytes==0.44.0
+
+# --- HuggingFace ecosystem ---
+huggingface_hub>=0.25.0
+tokenizers>=0.20.0
+datasets==3.1.0
+evaluate==0.4.3
+
+# --- Efficient LLM serving (logit access, batched inference, KV-cache) ---
+vllm==0.6.3
+
+# --- UQ library (CoCoA, MSP, lm-polygraph baseline) ---
+lm-polygraph==0.4.0
+
+# --- Sentence embeddings & NLI (consistency scoring) ---
+sentence-transformers==3.2.0
+
+# --- MCP SDK (tool server protocol) ---
+mcp==1.3.0
+
+# --- Evaluation & statistics ---
+scikit-learn==1.5.2
+scipy==1.14.1
+
+# --- Data handling ---
+pandas==2.2.3
+# numpy 2.x has known incompatibilities with vllm 0.6.x and lm-polygraph 0.4.0
+# (kernel/serialization errors). Stay on the 1.x line until vllm >= 0.7.
+numpy==1.26.4
+jsonlines==4.0.0
+
+# --- Plotting (analysis notebooks, scripts/analyze_baseline.py) ---
+matplotlib==3.9.2
+seaborn==0.13.2
+
+# --- Experiment tracking ---
+mlflow==2.17.0
+wandb==0.18.5
+
+# --- HTTP client (ToolBench) ---
+requests==2.32.3
+
+# --- Utilities ---
+tqdm==4.66.5
+pydantic==2.9.2
+python-dotenv==1.0.1
+rich==13.9.4
+
+# --- Dev / testing ---
+pytest==8.3.3
+pytest-asyncio==0.24.0
+black==24.10.0
+isort==5.13.2
+mypy==1.13.0
